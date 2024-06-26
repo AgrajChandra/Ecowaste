@@ -1,3 +1,4 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
 
 // Firebase configuration
 const firebaseConfig = {
@@ -11,61 +12,60 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = firebase.initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
 
-// Reference messages collection
-var messagesRef = firebase.database().ref('contactForm');
+const submit = document.getElementById('submit');
+const contactForm = document.getElementById('contactForm');
 
-// Listen for form submits
-document.getElementById('contactForm').addEventListener('submit', submitForm);
+import {
+    getDatabase,
+    ref,
+    set,
+    child,
+    get,
+} from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js";
 
-// Submit form
+const db = getDatabase();
+
 function submitForm(e) {
     e.preventDefault();
 
     // Get values
-    var name = getInputVal('name');
-    var number = getInputVal('number');
-    var Pincode = getInputVal('Pincode');
-    var Wnumber = getInputVal('Wnumber');
-    var Colony = getInputVal('Colony');
-    var Hname = getInputVal('Hname');
-    var RoadName = getInputVal('RoadName');
-    var Landmark = getInputVal('Landmark');
-    var caption = getInputVal('caption');
+    const name = document.getElementById('name').value;
+    const number = document.getElementById('number').value;
+    const Pincode = document.getElementById('Pincode').value;
+    const Wnumber = document.getElementById('Wnumber').value;
+    const Colony = document.getElementById('Colony').value;
+    const Hname = document.getElementById('Hname').value;
+    const RoadName = document.getElementById('RoadName').value;
+    const Landmark = document.getElementById('Landmark').value;
+    const caption = document.getElementById('caption').value;
 
     // Save message
     saveMessage(name, number, Pincode, Wnumber, Colony, Hname, RoadName, Landmark, caption);
 
     // Show alert
-    document.querySelector('.alert').style.display = 'block';
+
 
     // Hide alert after 3 seconds
-    setTimeout(function () {
-        document.querySelector('.alert').style.display = 'none';
-    }, 3000);
-
-    // Clear form
-    document.getElementById('contactForm').reset();
+    
 }
 
-// Function to get form values
-function getInputVal(id) {
-    return document.getElementById(id).value;
+// Save message to Firebase
+function saveMessage(name, number, Pincode, Wnumber, Colony, Hname, RoadName, Landmark, caption) {
+    const dbref = ref(db, 'contactForm');
+    const newMessageRef = child(dbref, '/contactForm/'+number);
+    set(newMessageRef, {
+        name,
+        number,
+        Pincode,
+        Wnumber,
+        Colony,
+        Hname,
+        RoadName,
+        Landmark,
+        caption
+    }).then(() => { alert("saved") }).catch((error) => { alert("error: " + error); });
 }
 
-// Save message to firebase
-function saveMessage(name, number, Pincode, Wnumber, Colony, Hname, RoadName, Landmark, caption){
-    var newMessageRef = messagesRef.push();
-    newMessageRef.set({
-        name: name, 
-        number: number, 
-        Pincode: Pincode, 
-        Wnumber: Wnumber, 
-        Colony: Colony, 
-        Hname: Hname, 
-        RoadName: RoadName, 
-        Landmark: Landmark, 
-        caption: caption
-    });
-}
+submit.addEventListener('click', submitForm);

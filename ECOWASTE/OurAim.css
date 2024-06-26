@@ -1,0 +1,14 @@
+h1 {
+    background-color: #22438c;
+    color: #fff;
+    text-align: center;
+}
+h1:hover {
+    background-color: #112c66;
+}
+h2 {
+    color: rgb(175, 10, 10);
+}
+h3 {
+    color: #0f317c;
+}

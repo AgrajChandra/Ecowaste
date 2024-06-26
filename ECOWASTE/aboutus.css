@@ -1,0 +1,24 @@
+h1 {
+    color: #fff;
+    background-color:#22438c ;
+    text-align: center;
+    font-size: 50px;
+}
+div {
+    display: inline-block;
+    text-align: center;
+    margin-left: 250px;
+    margin-top: 20px;
+}
+span {
+    display: inline-block;
+    text-align: center;
+    margin-top: 80px;
+    margin-left: 370px;
+}
+h2 {
+    color:#003049;
+}
+body {
+    background-color: #ccd5ae;
+}

@@ -1,0 +1,37 @@
+body {
+    background-color: #57cc99;
+}
+form {
+    background-color: #fff;
+    text-align: justify ;
+    display: inline-block;
+    margin-top: 90px;
+    margin-left: 500px;
+    padding-top: 30px;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-bottom: 50px;
+    color: #112c66;
+    border-color: black;
+    border-radius: 15px;
+    font-size: 20px;
+
+}
+button {
+    margin-left: 35%;
+    background-color:#22438c ;
+    color: #fff;
+    font-size: 15px;
+    margin-top: 20px;
+    border-radius: 10px;
+    padding-left: 40px;
+    padding-right: 40px ;
+
+}
+button:hover {
+    background-color: #112c66;
+
+}
+input {
+    margin-top: 20px;
+}
